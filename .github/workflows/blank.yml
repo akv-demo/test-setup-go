@@ -15,8 +15,8 @@ jobs:
       
       - name: default go
         run: |
-          echo 'ls -la /home/runner'
-          ls -la /home/runner
+          echo 'ls -la /usr/bin/go'
+          ls -la /usr/bin/go
           
       - name: Set up Go
         uses: akv-platform/setup-go@main
