@@ -15,8 +15,8 @@ jobs:
       
       - name: default go
         run: |
-          echo 'ls -la /home/runner/go'
-          ls -la /home/runner/go
+          echo 'ls -la /home/runner'
+          ls -la /home/runner
           
       - name: Set up Go
         uses: actions/setup-go@v3
