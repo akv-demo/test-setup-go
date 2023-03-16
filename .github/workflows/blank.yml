@@ -8,10 +8,7 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -23,8 +20,10 @@ jobs:
 
       - name: Run a multi-line script
         run: |
+          echo 'ls -la /home/runner/go/bin'
           ls -la /home/runner/go/bin
+          echo 'ls -la /usr/bin/go'
           ls -la /usr/bin/go
-          echo $PATH
-          echo $GOROOT
+          echo "PATH: $PATH"
+          echo "GOROOT: $GOROOT"
           ls -la `which go`
