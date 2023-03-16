@@ -23,9 +23,8 @@ jobs:
 
       - name: Run a multi-line script
         run: |
+          ls -la /home/runner/go/bin
           ls -la /usr/bin/go
           echo $PATH
           echo $GOROOT
           ls -la `which go`
-          (ls -la `which go`)
-          /bin/bash -c 'ls -la `which go`'
