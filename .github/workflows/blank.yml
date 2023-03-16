@@ -13,12 +13,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - name: default go
+        run: |
+          echo 'ls -la /home/runner/go/bin'
+          ls -la /home/runner/go/bin
+          
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
           go-version: '1.16.2'
 
-      - name: Run a multi-line script
+      - name: set up go
         run: |
           echo 'ls -la /home/runner/go/bin'
           ls -la /home/runner/go/bin
