@@ -19,12 +19,11 @@ jobs:
           ls -la /home/runner
           
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: akv-demo/setup-go@main
         with:
           go-version: '1.16.2'
 
-
-      - name: set up go
+      - name: run go
         run: |
           echo 'go env GOPATH'
           go env GOPATH
