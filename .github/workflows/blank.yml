@@ -8,12 +8,24 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.16.2'
 
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          ls -la /usr/bin/go
+          echo $PATH
+          echo $GOROOT
+          ls -la `which go`
+          (ls -la `which go`)
+          /bin/bash -c 'ls -la `which go`'
