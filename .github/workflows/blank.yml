@@ -18,18 +18,8 @@ jobs:
           echo 'ls -la /usr/bin/go'
           ls -la /usr/bin/go
           
-      - name: Set up Go 1.18.10
-        uses: akv-platform/setup-go@main
-        with:
-          go-version: '1.18.10'
-          
       - name: Set up Go 1.16.2
-        uses: akv-platform/setup-go@main
-        with:
-          go-version: '1.16.2'
-          
-      - name: Set up Go 1.16.2
-        uses: akv-platform/setup-go@main
+        uses: akv-platform/setup-go@usr-bin-go
         with:
           go-version: '1.16.2'          
 
