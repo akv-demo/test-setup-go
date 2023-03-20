@@ -25,6 +25,7 @@ jobs:
 
       - name: run go
         run: |
+          env
           echo 'go env GOPATH'
           go env GOPATH
           echo 'ls -la /home/runner/go/bin'
