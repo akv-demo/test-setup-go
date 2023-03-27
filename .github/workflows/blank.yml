@@ -21,4 +21,8 @@ jobs:
 
       - name: build
         run: |
+          echo 'cache before build'
+          du -s $(go env GOCACHE) || echo 'no cache'
           go build -v .
+          echo 'cache after build'
+          du -s $(go env GOCACHE) || echo 'no cache'
