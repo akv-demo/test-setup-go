@@ -10,7 +10,8 @@ jobs:
   build:
     strategy:
       matrix:
-        image: [ubuntu-latest, windows-latest, macos-latest, self-hosted]
+        #        image: [ubuntu-latest, windows-latest, macos-latest, self-hosted]
+        image: [ubuntu-latest]
     runs-on: ${{ matrix.image }}
 
     steps:
@@ -18,5 +19,7 @@ jobs:
 
       - name: Run a multi-line script
         run: |
+          uname -o
+          set
           echo "imageOS='$ImageOS'"
         shell: bash
