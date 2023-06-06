@@ -10,7 +10,7 @@ jobs:
   build:
     strategy:
       matrix:
-        image: [ubuntu-latest, windows-latest, macos-latest]
+        image: [ubuntu-latest, windows-latest, macos-latest, self-hosted]
     runs-on: ${{ matrix.image }}
 
     steps:
