@@ -8,12 +8,16 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        cache: [true, false]
+        action: [v3, v4]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/setup-go@${{ matrix.action }}
+        with:
+          go-version: 1.20.5
+          cache: ${{ matrix.cache }}
+        name: ${{ matrix.action }}-cache-${{ matrix.cache }}
 
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
