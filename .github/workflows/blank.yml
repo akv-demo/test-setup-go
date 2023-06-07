@@ -12,10 +12,10 @@ jobs:
     strategy:
       matrix:
         cache: [true, false]
-        action: [v3, v4]
+        action: [actions/setup-go@v3, actions/setup-go@v4]
 
     steps:
-      - uses: actions/setup-go@${{ matrix.action }}
+      - uses: ${{ matrix.action }}
         with:
           go-version: 1.20.5
           cache: ${{ matrix.cache }}
