@@ -35,8 +35,8 @@ jobs:
         name: v4-cache-${{ matrix.cache }}
         
       - run: |
-          du -m -sa 'D:\hostedtoolcache\windows\go\1.20.5\x64'
-          du -m -sa 'C:\hostedtoolcache\windows\go\1.20.5\x64'
+          du -m -s 'D:\hostedtoolcache\windows\go\1.20.5\x64'
+          du -m -s 'C:\hostedtoolcache\windows\go\1.20.5\x64'
         shell: bash
         name: Disk usage
 
