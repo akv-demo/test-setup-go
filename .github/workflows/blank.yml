@@ -39,4 +39,9 @@ jobs:
           du -m -s 'C:\hostedtoolcache\windows\go\1.20.5\x64'
         shell: bash
         name: Disk usage
-
+        
+      - run: |
+          echo $PATH
+          which go
+          go --version
+          go env
