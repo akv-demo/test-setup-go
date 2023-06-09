@@ -27,9 +27,16 @@ jobs:
         cache: [false]
     steps:
       - uses: actions/checkout@v3
+      
       - uses: akv-platform/setup-go@performance
         with:
           go-version: 1.20.5
           cache: ${{ matrix.cache }}
         name: v4-cache-${{ matrix.cache }}
+        
+      - run: |
+          du -m -sa 'D:\hostedtoolcache\windows\go\1.20.5\x64'
+          du -m -sa 'C:\hostedtoolcache\windows\go\1.20.5\x64'
+        shell: bash
+        name: Disk usage
 
