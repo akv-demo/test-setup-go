@@ -45,3 +45,5 @@ jobs:
           which go
           go version
           go env
+          
+          
