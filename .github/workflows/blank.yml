@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         cache: [true, false]
-        go: [ 1.20.1 ]
+        go: [1.20.1]
     steps:
       - uses: actions/checkout@v3
       - uses: akv-platform/setup-go@performance
@@ -26,6 +26,7 @@ jobs:
     strategy:
       matrix:
         cache: [false]
+        go: [1.20.1]
     steps:
       - uses: actions/checkout@v3
       
