@@ -10,7 +10,7 @@ jobs:
   find-default-go:
     runs-on: windows-latest
     outputs:
-      version: ${{ steps.step1.outputs.gover }}
+      version: ${{ steps.step1.outputs.version }}
     steps:
       - run: |
           version=`go env GOVERSION|sed s/^go//`
