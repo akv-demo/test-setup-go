@@ -16,7 +16,9 @@ jobs:
           version=`go env GOVERSION|sed s/^go//`
           echo "default go version: $version"
           echo "version=$version" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
         shell: bash
+        id: step1
         
   use-default-go:
     runs-on: windows-latest
