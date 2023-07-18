@@ -10,19 +10,19 @@ jobs:
   find-default-go:
     runs-on: windows-latest
     outputs:
-      default_version: ${{ steps.step1.outputs.gover }}
+      version: ${{ steps.step1.outputs.gover }}
     steps:
       - run: |
           version=`go env GOVERSION|sed s/^go//`
           echo "default go version: $version"
-          echo "gover=$version" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
         shell: bash
         
   use-default-go:
     runs-on: windows-latest
     steps:
       - run: |
-          echo "default go: ${{ needs.find-default-go.outputs.gover}}"
+          echo "default go: ${{ needs.find-default-go.outputs.version}}"
         shell: bash
 
           
