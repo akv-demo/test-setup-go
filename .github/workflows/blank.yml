@@ -10,7 +10,7 @@ jobs:
   find-default-go:
     runs-on: windows-latest
     outputs:
-      version: ${{ steps.step1.outputs.version }}
+      version: ${{ steps.goversion.outputs.version }}
     steps:
       - run: |
           version=`go env GOVERSION|sed s/^go//`
@@ -18,7 +18,7 @@ jobs:
           echo "version=$version" >> "$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
         shell: bash
-        id: step1
+        id: goversion
         
   use-default-go:
     runs-on: windows-latest
