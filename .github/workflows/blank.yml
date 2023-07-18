@@ -12,8 +12,14 @@ jobs:
     steps:
       - run: |
           version=`go env GOVERSION|sed s/^go//`
-          echo $version
+          echo "default go version: $version"
+          echo "gover=$version" >> "$GITHUB_OUTPUT"
         shell: bash
+        id: gover
+        
+      - run: |
+          env
+          echo "output gover=${{ outputs.gover.gover }}"
           
       - uses: actions/setup-go@v4
         if: ${{ false }}
