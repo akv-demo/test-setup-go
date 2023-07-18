@@ -13,6 +13,7 @@ jobs:
       - run: |
           version=`go env GOVERSION|sed s/^go//`
           echo $version
+        shell: bash
           
       - uses: actions/setup-go@v4
         if: ${{ false }}
