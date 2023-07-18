@@ -10,4 +10,6 @@ jobs:
   v4:
     runs-on: windows-latest
     steps:
-      - run: go --version
+      - run: |
+          go version
+          go env GOROOT
