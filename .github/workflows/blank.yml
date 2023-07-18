@@ -7,28 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  v3:
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        cache: [true, false]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
-        with:
-          go-version: 1.20.5
-          cache: ${{ matrix.cache }}
-        name: v3-cache-${{ matrix.cache }}
   v4:
     runs-on: windows-latest
-    strategy:
-      matrix:
-        cache: [true, false]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v4
-        with:
-          go-version: 1.20.5
-          cache: ${{ matrix.cache }}
-        name: v4-cache-${{ matrix.cache }}
-
+      - run: go --version
