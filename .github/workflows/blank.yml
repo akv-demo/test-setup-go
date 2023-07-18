@@ -7,18 +7,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  v4:
+  find-default-go:
     runs-on: windows-latest
+    outputs:
+      default_version: ${{ steps.step1.outputs.gover }}
     steps:
       - run: |
           version=`go env GOVERSION|sed s/^go//`
           echo "default go version: $version"
           echo "gover=$version" >> "$GITHUB_OUTPUT"
         shell: bash
-        id: gover
         
+  use-default-go:
+    runs-on: windows-latest
+    steps:
       - run: |
-          env
+          echo "default go: ${{ needs.find-default-go.outputs.gover}}"
+        shell: bash
+
           
           
       - uses: actions/setup-go@v4
