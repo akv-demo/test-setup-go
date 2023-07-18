@@ -22,6 +22,7 @@ jobs:
         
   use-default-go:
     runs-on: windows-latest
+    needs: find-default-go
     steps:
       - run: |
           echo "default go: ${{ needs.find-default-go.outputs.version}}"
