@@ -19,7 +19,7 @@ jobs:
         
       - run: |
           env
-          echo "output gover=${{ outputs.gover.gover }}"
+          
           
       - uses: actions/setup-go@v4
         if: ${{ false }}
