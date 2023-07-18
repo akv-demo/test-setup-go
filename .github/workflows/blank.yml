@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - run: |
-          version=`go env GOVERSION|sed s/^go//'
+          version=`go env GOVERSION|sed s/^go//`
           echo $version
           
       - uses: actions/setup-go@v4
