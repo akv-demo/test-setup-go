@@ -13,7 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run a multi-line script
+      - name: Install Go
+        uses: akv-demo/test-setup-go@cache-perf
+        with:
+          go-version: "1.20.x"
+          cache: true
+
+      - name: Run
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          cd hello
+          ls -la
+          go run .
