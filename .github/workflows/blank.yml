@@ -25,7 +25,7 @@ jobs:
 
       - name: Tar them
         run: |
-          tar -vcf /tmp/dummy.tar  -P -C /home/runner/work/abc/abc--use-compress-program unzstd dummy
+          tar -vcf /tmp/dummy.tar  -P dummy
           ls -la /tmp/dummy.tar
         shell: bash
         
@@ -33,7 +33,7 @@ jobs:
         run: |
           ls -la
           ls -la dummy
-          tar -vxf /tmp/dummy.tar  -P -C /home/runner/work/abc/abc--use-compress-program unzstd
+          tar -vxf /tmp/dummy.tar  -P
           ls -la
           ls -la dummy
         shell: bash
