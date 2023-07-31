@@ -20,7 +20,7 @@ jobs:
         run: |
           mkdir dummy
           echo 1 > dummy/dummy.1
-          echo 2 > dummy/dummy.1
+          echo 2 > dummy/dummy.2
         shell: bash
 
       - name: Tar them
@@ -31,6 +31,7 @@ jobs:
         
       - name: Untar them
         run: |
-          tar -vx /tmp/dummy.tar
+          ls -la /tmp/dummy.tar
+          tar -vxf /tmp/dummy.tar
           ls -la
         shell: bash
