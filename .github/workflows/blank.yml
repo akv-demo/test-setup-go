@@ -31,6 +31,9 @@ jobs:
         
       - name: Untar them
         run: |
+          touch dummy
+          touch dummy/dummy.1
+          touch dummy/dummy.2
           ls -la
           ls -la dummy
           tar -vxf /tmp/dummy.tar  -P
