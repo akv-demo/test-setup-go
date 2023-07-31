@@ -26,7 +26,7 @@ jobs:
 
       - name: Tar them
         run: |
-          tar --posix -vcf /tmp/dummy.tar  -P --use-compress-program zstd dummy
+          tar --posix -vcf /tmp/dummy.tzst  -P --use-compress-program zstd dummy
           ls -la /tmp/dummy.tzst
         shell: bash
         
