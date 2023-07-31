@@ -19,8 +19,8 @@ jobs:
       - name: Create dummy files to tar
         run: |
           mkdir dummy
-          echo 1 > dummy/dummy.1
-          echo 2 > dummy/dummy.2
+          echo a > dummy/dummy.1
+          echo b > dummy/dummy.2
         shell: bash
 
       - name: Tar them
