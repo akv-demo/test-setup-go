@@ -31,7 +31,9 @@ jobs:
         
       - name: Untar them
         run: |
-          ls -la /tmp/dummy.tar
+          ls -la
+          ls -la dummy
           tar -vxf /tmp/dummy.tar
           ls -la
+          ls -la dummy
         shell: bash
