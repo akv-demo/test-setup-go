@@ -15,9 +15,22 @@ jobs:
     runs-on: ${{ matrix.runner }}
 
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Run a multi-line script
+      # - uses: actions/checkout@v3
+      - name: Create dummy files to tar
         run: |
-          which tar
+          mkdir dummy
+          echo 1 > dummy/dummy.1
+          echo 2 > dummy/dummy.1
+        shell: bash
+
+      - name: Tar them
+        run: |
+          tar -v -c /tmp/dummy.tar -f dummy
+          ls -la /tmp/dummy.tar
+        shell: bash
+        
+      - name: Untar them
+        run: |
+          tar -v -x /tmp/dummy.tar
+          ls -la
         shell: bash
