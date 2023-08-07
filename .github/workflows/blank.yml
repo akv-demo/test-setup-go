@@ -7,40 +7,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  v3:
-    runs-on: windows-latest
-    if: ${{ false }}
-    strategy:
-      matrix:
-        cache: [true, false]
-        go: [1.20.1]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: akv-platform/setup-go@performance
-        with:
-          go-version: ${{ matrix.go }}
-          cache: ${{ matrix.cache }}
-        name: v3-cache-${{ matrix.cache }}
   v4:
     runs-on: windows-latest
     strategy:
       matrix:
         cache: [false]
         go: [1.20.1]
+        no: [1,2,3,4,5,6,7,8,9,10]
     steps:
-      - uses: actions/checkout@v3
+      # - uses: actions/checkout@v3
       
-      - uses: akv-platform/setup-go@performance
+      - uses: actions/setup-go@pmain
         with:
           go-version: ${{ matrix.go }}
           cache: ${{ matrix.cache }}
         name: v4-cache-${{ matrix.cache }}
-        
-      - run: |
-          du -m -s 'D:\hostedtoolcache\windows\go\${{ matrix.go }}\x64'
-          du -m -s 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64'
-        shell: bash
-        name: Disk usage
         
       - run: |
           echo $PATH
