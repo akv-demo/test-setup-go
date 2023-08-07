@@ -28,6 +28,7 @@ jobs:
           which go
           go version
           go env
+        shell: bash
 
   v4:
     runs-on: windows-latest
@@ -46,8 +47,10 @@ jobs:
         name: v4-cache-${{ matrix.cache }}
         
       - run: |
+          set
           echo $PATH
           which go
           go version
           go env
+        shell: bash
           
