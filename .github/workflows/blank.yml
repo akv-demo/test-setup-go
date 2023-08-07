@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  v4:
+  main:
     runs-on: windows-latest
     strategy:
       matrix:
@@ -28,5 +28,26 @@ jobs:
           which go
           go version
           go env
-          
+
+  v4:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        cache: [false]
+        go: [1.20.1]
+        no: [1]
+    steps:
+      # - uses: actions/checkout@v3
+      
+      - uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go }}
+          cache: ${{ matrix.cache }}
+        name: v4-cache-${{ matrix.cache }}
+        
+      - run: |
+          echo $PATH
+          which go
+          go version
+          go env
           
