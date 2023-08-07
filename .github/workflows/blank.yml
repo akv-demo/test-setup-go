@@ -6,51 +6,38 @@ on:
 
   workflow_dispatch:
 
-jobs:
-  main:
+jobs:        
+  find-default-go:
+    name: 'Find default go version'
     runs-on: windows-latest
+    outputs:
+      version: ${{ steps.goversion.outputs.version }}
+    steps:
+      - run: |
+          version=`go env GOVERSION|sed s/^go//`
+          echo "default go version: $version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+        id: goversion
+        shell: bash
+        
+  default-main:
+    name: 'Validate if symlink is not created for default go'
+    runs-on: windows-latest
+    needs: find-default-go
     strategy:
       matrix:
-        cache: [false]
-        go: [1.20.1]
-        no: [1,2,3,4,5,6,7,8,9,10]
+        cache: [false, true]
     steps:
-      # - uses: actions/checkout@v3
-      
-      - uses: actions/setup-go@main
-        with:
-          go-version: ${{ matrix.go }}
-          cache: ${{ matrix.cache }}
-        name: v4-cache-${{ matrix.cache }}
-        
-      - run: |
-          echo $PATH
-          which go
-          go version
-          go env
-        shell: bash
 
-  v4:
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        cache: [false]
-        go: [1.20.1]
-        no: [1,2,3,4,5,6,7,8,9,10]
-    steps:
-      # - uses: actions/checkout@v3
-      
-      - uses: actions/setup-go@v4
+      - name: 'Setup default go, cache: ${{ matrix.cache }}'
+        uses: actions/setup-go@main
         with:
-          go-version: ${{ matrix.go }}
+          go-version: ${{ needs.find-default-go.outputs.version }}
           cache: ${{ matrix.cache }}
-        name: v4-cache-${{ matrix.cache }}
-        
+
       - run: |
-          set
           echo $PATH
           which go
           go version
           go env
         shell: bash
-          
