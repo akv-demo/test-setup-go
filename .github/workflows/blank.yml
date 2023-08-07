@@ -17,7 +17,7 @@ jobs:
     steps:
       # - uses: actions/checkout@v3
       
-      - uses: actions/setup-go@pmain
+      - uses: actions/setup-go@main
         with:
           go-version: ${{ matrix.go }}
           cache: ${{ matrix.cache }}
