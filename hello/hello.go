@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 
 	"example.com/greetings"
 )
 
 func main() {
-	// Get a greeting message and print it.
+	var r = rand.Intn(10)
 	message := greetings.Hello("Gladys")
-	fmt.Println(message)
+	message2 := fmt.Sprintf("%v: %v", message, r)
+	fmt.Println(message2)
 }
