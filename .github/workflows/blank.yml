@@ -7,13 +7,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  find-default-go:
+    name: 'Find default go version'
+    runs-on: windows-latest
+    outputs:
+      version: ${{ steps.goversion.outputs.version }}
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - run: |
+          ls -la 'C:\hostedtoolcache\windows\go\'
+          version=`go env GOVERSION|sed s/^go//`
+          echo "default go version: $version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+        id: goversion
+        shell: bash
