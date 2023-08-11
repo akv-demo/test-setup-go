@@ -15,7 +15,7 @@ jobs:
     steps:
       - run: |
           ls -la 'C:\hostedtoolcache\windows\go\'
-          ls -la 'C:\hostedtoolcache\windows\go\*'
+          ls -la "C:\hostedtoolcache\windows\go\*"
           version=`go env GOVERSION|sed s/^go//`
           echo "default go version: $version"
           echo "version=$version" >> "$GITHUB_OUTPUT"
