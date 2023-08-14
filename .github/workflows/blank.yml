@@ -27,6 +27,7 @@ jobs:
           ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.go }}'
           ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64'
           ls -laH 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64'
+          ls -la /d/hostedtoolcache/windows/go/1.20.1/x64/
         shell: bash
           
         
