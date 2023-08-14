@@ -24,15 +24,20 @@ jobs:
 
       - run: |
           echo 'd:'
-          find /d/hostedtoolcache/windows/go -name '*.comp*e' || echo 'not completed d:'
+          #find /d/hostedtoolcache/windows/go -name '*.comp*e' || echo 'not completed d:'
           echo 'c:'
-          find 'C:\hostedtoolcache\windows\go' -name '*.comp*' || echo 'not completed c:'
-          touch 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64.complete'
+          #find 'C:\hostedtoolcache\windows\go' -name '*.comp*' || echo 'not completed c:'
+          #touch 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64.complete'
           ls -la 'C:\hostedtoolcache\windows\go'
           ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.go }}'
           ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64'
           ls -laH 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64'
           ls -la /d/hostedtoolcache/windows/go/1.20.1/x64/
+
+          echo 'const fs = require('fs')' > t.js
+          echo 'console.log(fs.existsSync(\'/d/hostedtoolcache/windows/go/${{ matrix.go }}/x64.complete')') >> t.js
+          echo 'console.log(fs.existsSync(\'/c/hostedtoolcache/windows/go/${{ matrix.go }}/x64.complete')') >> t.js
+          node t.j
           
         shell: bash
           
