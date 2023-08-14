@@ -24,8 +24,8 @@ jobs:
 
       - run: |
           ls -la 'C:\hostedtoolcache\windows\go'
-          ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.cache }}'
-          ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.cache }}\x64'
+          ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.go }}'
+          ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64'
         shell: bash
           
         
