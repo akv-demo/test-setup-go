@@ -34,19 +34,19 @@ jobs:
           ls -laH 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64'
           ls -la /d/hostedtoolcache/windows/go/1.20.1/x64/
 
-          echo '/tmp'
-          mkdir /tmp/t
-          mkdir /tmp/t/a
-          touch /tmp/t/a/x
-          mklink -H /tmp/t/b /tmp/t/a
-          ls -la /tmp/t
-          ls -la /tmp/a
-          ls -la /tmp/b
+          echo 'C:\hostedtoolcache\windows\tmp'
+          mkdir 'C:\hostedtoolcache\windows\tmp'
+          mkdir -p 'C:\hostedtoolcache\windows\tmp\a'
+          touch 'C:\hostedtoolcache\windows\tmp\a\x'
+          mkdir -p 'D:\hostedtoolcache\windows\tmp\a'
+          mklink -H 'D:\hostedtoolcache\windows\tmp\a' 'C:\hostedtoolcache\windows\tmp\a'
+          ls -la 'D:\hostedtoolcache\windows\tmp\a'
+          ls -la 'C:\hostedtoolcache\windows\tmp\a'
 
           echo createjs
           echo 'const fs = require("fs")' > t.js
-          echo 'console.log(fs.existsSync("d/hostedtoolcache/windows/go/${{ matrix.go }}/x64.complete"))' >> t.js
-          echo 'console.log(fs.existsSync("/c/hostedtoolcache/windows/go/${{ matrix.go }}/x64.complete"))' >> t.js
+          #echo 'console.log(fs.existsSync("d/hostedtoolcache/windows/go/${{ matrix.go }}/x64.complete"))' >> t.js
+          #echo 'console.log(fs.existsSync("/c/hostedtoolcache/windows/go/${{ matrix.go }}/x64.complete"))' >> t.js
           cat t.js
           echo run
           node t.js
