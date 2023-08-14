@@ -21,6 +21,13 @@ jobs:
           go-version: ${{ matrix.go }}
           cache: ${{ matrix.cache }}
         name: v4-cache-${{ matrix.cache }}
+
+      - run: |
+          ls -la 'C:\hostedtoolcache\windows\go'
+          ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.cache }}'
+          ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.cache }}\x64'
+        shell: bash
+          
         
       - uses: actions/setup-go@main
         with:
