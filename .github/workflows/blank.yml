@@ -22,7 +22,7 @@ jobs:
           cache: ${{ matrix.cache }}
         name: v4-cache-${{ matrix.cache }}
         
-      - uses:akv-platform/setup-go@win-perf-dirlink
+      - uses: akv-platform/setup-go@win-perf-dirlink
         with:
           go-version: ${{ matrix.go }}
           cache: ${{ matrix.cache }}
