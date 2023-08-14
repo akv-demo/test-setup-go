@@ -37,7 +37,16 @@ jobs:
           echo 'const fs = require('fs')' > t.js
           echo 'console.log(fs.existsSync(\'/d/hostedtoolcache/windows/go/${{ matrix.go }}/x64.complete\'))' >> t.js
           echo 'console.log(fs.existsSync(\'/c/hostedtoolcache/windows/go/${{ matrix.go }}/x64.complete\'))' >> t.js
+          cat t.js
           node t.js
+
+          mkdir /tmp/t
+          mkdir /tmp/t/a
+          touch /tmp/t/a/x
+          mklink -H /tmp/t/b /tmp/t/a
+          ls -la /tmp/t
+          ls -la /tmp/a
+          ls -la /tmp/b
           
         shell: bash
           
