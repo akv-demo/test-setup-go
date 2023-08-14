@@ -23,9 +23,9 @@ jobs:
         name: v4-cache-${{ matrix.cache }}
 
       - run: |
-          find /d/hostedtoolcache/windows/go -name '.completed' || echo 'not completed d:'
-          find 'C:\hostedtoolcache\windows\go' -name '.completed' || echo 'not completed c:'
-          touch 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64\.completed'
+          find /d/hostedtoolcache/windows/go -name '.complete' || echo 'not completed d:'
+          find 'C:\hostedtoolcache\windows\go' -name '.complete' || echo 'not completed c:'
+          touch 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64\.complete'
           ls -la 'C:\hostedtoolcache\windows\go'
           ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.go }}'
           ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64'
