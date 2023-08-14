@@ -42,7 +42,7 @@ jobs:
         shell: bash
           
       - run: |
-          mklink -H 'D:\hostedtoolcache\windows\tmp\a' 'C:\hostedtoolcache\windows\tmp\a'
+          mklink /H 'D:\hostedtoolcache\windows\tmp\a' 'C:\hostedtoolcache\windows\tmp\a'
         shell: cmd
 
       - run: |
