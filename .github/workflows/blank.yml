@@ -39,7 +39,13 @@ jobs:
           mkdir -p 'C:\hostedtoolcache\windows\tmp\a'
           touch 'C:\hostedtoolcache\windows\tmp\a\x'
           mkdir -p 'D:\hostedtoolcache\windows\tmp\a'
+        shell: bash
+          
+      - run: |
           mklink -H 'D:\hostedtoolcache\windows\tmp\a' 'C:\hostedtoolcache\windows\tmp\a'
+        shell: cmd
+
+      - run: |
           ls -la 'D:\hostedtoolcache\windows\tmp\a'
           ls -la 'C:\hostedtoolcache\windows\tmp\a'
 
@@ -50,7 +56,6 @@ jobs:
           cat t.js
           echo run
           node t.js
-          
         shell: bash
           
         
