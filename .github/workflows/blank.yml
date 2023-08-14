@@ -34,12 +34,7 @@ jobs:
           ls -laH 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64'
           ls -la /d/hostedtoolcache/windows/go/1.20.1/x64/
 
-          echo 'const fs = require(\'fs\')' > t.js
-          echo 'console.log(fs.existsSync(\'/d/hostedtoolcache/windows/go/${{ matrix.go }}/x64.complete\'))' >> t.js
-          echo 'console.log(fs.existsSync(\'/c/hostedtoolcache/windows/go/${{ matrix.go }}/x64.complete\'))' >> t.js
-          cat t.js
-          node t.js
-
+          echo '/tmp'
           mkdir /tmp/t
           mkdir /tmp/t/a
           touch /tmp/t/a/x
@@ -47,6 +42,14 @@ jobs:
           ls -la /tmp/t
           ls -la /tmp/a
           ls -la /tmp/b
+
+          echo createjs
+          echo 'const fs = require("fs")' > t.js
+          echo 'console.log(fs.existsSync("d/hostedtoolcache/windows/go/${{ matrix.go }}/x64.complete"))' >> t.js
+          echo 'console.log(fs.existsSync("/c/hostedtoolcache/windows/go/${{ matrix.go }}/x64.complete"))' >> t.js
+          cat t.js
+          echo run
+          node t.js
           
         shell: bash
           
