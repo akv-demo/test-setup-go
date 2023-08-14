@@ -39,6 +39,9 @@ jobs:
           mkdir -p 'C:\hostedtoolcache\windows\tmp\a'
           touch 'C:\hostedtoolcache\windows\tmp\a\x'
           mkdir -p 'D:\hostedtoolcache\windows\tmp\a'
+          ls -la 'C:\hostedtoolcache\windows'
+          ls -la 'D:\hostedtoolcache\windows'
+          ls -la 'C:\hostedtoolcache\windows\tmp\a'
         shell: bash
           
       - run: |
