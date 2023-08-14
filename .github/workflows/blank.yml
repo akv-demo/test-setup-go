@@ -16,53 +16,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - uses: actions/setup-go@main
+      - uses: akv-platform/setup-go@win-perf-dirlink
         with:
           go-version: ${{ matrix.go }}
           cache: ${{ matrix.cache }}
         name: v4-cache-${{ matrix.cache }}
-
-      - run: |
-          echo 'd:'
-          #find /d/hostedtoolcache/windows/go -name '*.comp*e' || echo 'not completed d:'
-          echo 'c:'
-          #find 'C:\hostedtoolcache\windows\go' -name '*.comp*' || echo 'not completed c:'
-          #touch 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64.complete'
-          ls -la 'C:\hostedtoolcache\windows\go'
-          ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.go }}'
-          ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64'
-          ls -laH 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64'
-          ls -la /d/hostedtoolcache/windows/go/1.20.1/x64/
-
-          echo 'C:\hostedtoolcache\windows\tmp'
-          mkdir 'C:\hostedtoolcache\windows\tmp'
-          mkdir -p 'C:\hostedtoolcache\windows\tmp\a'
-          touch 'C:\hostedtoolcache\windows\tmp\a\x'
-          mkdir -p 'D:\hostedtoolcache\windows\tmp\a'
-          ls -la 'C:\hostedtoolcache\windows'
-          ls -la 'D:\hostedtoolcache\windows'
-          ls -la 'C:\hostedtoolcache\windows\tmp\a'
-        shell: bash
-          
-      - run: |
-          mklink /H 'D:\hostedtoolcache\windows\tmp\a' 'C:\hostedtoolcache\windows\tmp\a'
-        shell: cmd
-
-      - run: |
-          ls -la 'D:\hostedtoolcache\windows\tmp\a'
-          ls -la 'C:\hostedtoolcache\windows\tmp\a'
-
-          echo createjs
-          echo 'const fs = require("fs")' > t.js
-          #echo 'console.log(fs.existsSync("d/hostedtoolcache/windows/go/${{ matrix.go }}/x64.complete"))' >> t.js
-          #echo 'console.log(fs.existsSync("/c/hostedtoolcache/windows/go/${{ matrix.go }}/x64.complete"))' >> t.js
-          cat t.js
-          echo run
-          node t.js
-        shell: bash
-          
         
-      - uses: actions/setup-go@main
+      - uses:akv-platform/setup-go@win-perf-dirlink
         with:
           go-version: ${{ matrix.go }}
           cache: ${{ matrix.cache }}
