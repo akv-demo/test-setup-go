@@ -23,11 +23,14 @@ jobs:
         name: v4-cache-${{ matrix.cache }}
 
       - run: |
+          find /d/hostedtoolcache/windows/go/1.20.1/x64/ -name '.completed' || echo 'not completed'
+          touch 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64\.completed'
           ls -la 'C:\hostedtoolcache\windows\go'
           ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.go }}'
           ls -la 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64'
           ls -laH 'C:\hostedtoolcache\windows\go\${{ matrix.go }}\x64'
           ls -la /d/hostedtoolcache/windows/go/1.20.1/x64/
+          
         shell: bash
           
         
