@@ -13,6 +13,7 @@ jobs:
       version: ${{ steps.goversion.outputs.version }}
     steps:
       - run: |
+          which go
           version=`go env GOVERSION|sed s/^go//`
           echo "default go version: $version"
           echo "version=$version" >> "$GITHUB_OUTPUT"
