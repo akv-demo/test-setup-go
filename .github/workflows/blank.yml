@@ -27,8 +27,6 @@ jobs:
       - run: |
           echo "default go: ${{ needs.find-default-go.outputs.version}}"
         shell: bash
-
-          
           
       - uses: actions/setup-go@v4
         if: ${{ false }}
