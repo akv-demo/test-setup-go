@@ -18,6 +18,8 @@ jobs:
           echo "default go version: $version"
           echo "version=$version" >> "$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
+          ls /c/hostedtoolcache/windows/go/
+          echo $PATH
         shell: bash
         id: goversion
         
