@@ -8,12 +8,15 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        repo: [ulule/loukoum, gdm85/wolfengo]
+  
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: ulule/loukoum
+          repository: ${{ matrix.repo }}
 
       - name: Install Go
         uses: actions/setup-go@v4
