@@ -24,6 +24,23 @@ jobs:
           go-version: "1.20.x"
           cache: false
 
+      - name: Get Go cached paths
+        run: |
+          echo "cache=$(go env GOCACHE)" >> $GITHUB_ENV
+          echo "modcache=$(go env GOMODCACHE)" >> $GITHUB_ENV
+
+      - name: get
+        run: |
+          go get
+
       - name: build
         run: |
-          ls -la
+          go get
+
+      - name: stats
+        run: |
+          echo 'Build results size(Mb):'
+          du -m -s `go env GOCACHE`
+          echo 'Dependency results size(Mb):'
+          du -m -s `go env MODGOCACHE`
+
