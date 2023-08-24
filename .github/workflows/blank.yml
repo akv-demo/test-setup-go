@@ -23,4 +23,4 @@ jobs:
 
       - name: build
         run: |
-          du -m -s .
+          ls -la
