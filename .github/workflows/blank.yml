@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: https://github.com/ulule/loukoum
+          repository: ulule/loukoum
 
       - name: Install Go
         uses: actions/setup-go@v4
