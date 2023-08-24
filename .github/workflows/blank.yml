@@ -31,11 +31,11 @@ jobs:
 
       - name: get
         run: |
-          go get
+          test -d src && go get src || go get .
 
       - name: build
         run: |
-          go get
+          test -d src && go build src || go build .
 
       - name: stats
         run: |
