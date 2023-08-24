@@ -10,7 +10,7 @@ jobs:
   build:
     strategy:
       matrix:
-        repo: [ulule/loukoum, allegro/marathon-consul, rancher/kontainer-engine]
+        repo: [ulule/loukoum, allegro/marathon-consul, rancher/kontainer-engine, decred/dcrstakepool]
   
     runs-on: ubuntu-latest
     steps:
