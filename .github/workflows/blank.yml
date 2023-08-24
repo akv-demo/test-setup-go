@@ -10,7 +10,7 @@ jobs:
   build:
     strategy:
       matrix:
-        repo: [ulule/loukoum, gdm85/wolfengo]
+        repo: [ulule/loukoum, allegro/marathon-consul]
   
     runs-on: ubuntu-latest
     steps:
