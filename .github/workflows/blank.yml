@@ -31,11 +31,11 @@ jobs:
 
       - name: get
         run: |
-          test -d src && (cd src;go get) || go get
+          go get
 
       - name: build
         run: |
-          test -d src && (cd src;go build) || go build
+          go build
 
       - name: stats
         run: |
@@ -43,4 +43,8 @@ jobs:
           du -m -s `go env GOCACHE`
           echo 'Dependency results size(Mb):'
           du -m -s `go env MODGOCACHE`
+          echo 'Lines is go.mod:'
+          wc -l go.mod
+          echo 'Lines is go.sum:'
+          wc -l go.sum
 
