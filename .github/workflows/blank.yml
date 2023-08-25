@@ -6,8 +6,70 @@ on:
 
   workflow_dispatch:
 
-jobs:
-  build:
+jobs:          
+  builtin-cache-create:
+    strategy:
+      matrix:
+        repo: [ulule/loukoum, allegro/marathon-consul, rancher/kontainer-engine, decred/dcrstakepool]
+  
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ matrix.repo }}
+
+      - name: Install Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.20.x"
+          cache: true
+      - name: get
+        run: |
+          go get
+
+      - name: build
+        run: |
+          go build
+          
+      - name: stats
+        run: |
+          echo 'Build results size(Mb):'
+          du -m -s `go env GOCACHE`
+          echo 'Dependency results size(Mb):'
+          du -m -s `go env MODGOCACHE`
+          echo 'Lines is go.mod:'
+          wc -l go.mod
+          echo 'Lines is go.sum:'
+          wc -l go.sum
+          
+  builtin-cache-use:
+    needs: builtin-cache-create
+    strategy:
+      matrix:
+        repo: [ulule/loukoum, allegro/marathon-consul, rancher/kontainer-engine, decred/dcrstakepool]
+  
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ matrix.repo }}
+
+      - name: Install Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.20.x"
+          cache: true
+
+
+      - name: get
+        run: |
+          go get
+
+      - name: build
+        run: |
+          go build
+          
+  action-cache-create:
     strategy:
       matrix:
         repo: [ulule/loukoum, allegro/marathon-consul, rancher/kontainer-engine, decred/dcrstakepool]
@@ -28,15 +90,30 @@ jobs:
         run: |
           echo "cache=$(go env GOCACHE)" >> $GITHUB_ENV
           echo "modcache=$(go env GOMODCACHE)" >> $GITHUB_ENV
-
+         
+      - name: Create dependencies cache
+        uses: actions/cache@v3
+        if: ${{ false }}
+        with:
+          path: |
+            ${{ env.cache }}
+          key: setup-go-deps-${{ hashFiles('go.sum go.mod') }}
+        
+      - name: Create intermediate built files cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ env.modcache }}
+          key: setup-go-build-${{ hashFiles('**/*.go') }}
+            
       - name: get
         run: |
           go get
-
+            
       - name: build
         run: |
           go build
-
+          
       - name: stats
         run: |
           echo 'Build results size(Mb):'
@@ -47,4 +124,49 @@ jobs:
           wc -l go.mod
           echo 'Lines is go.sum:'
           wc -l go.sum
+          
+  action-cache-use:
+    strategy:
+      matrix:
+        repo: [ulule/loukoum, allegro/marathon-consul, rancher/kontainer-engine, decred/dcrstakepool]
+  
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ matrix.repo }}
 
+      - name: Install Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.20.x"
+          cache: false
+
+      - name: Get Go cached paths
+        run: |
+          echo "cache=$(go env GOCACHE)" >> $GITHUB_ENV
+          echo "modcache=$(go env GOMODCACHE)" >> $GITHUB_ENV
+         
+      - name: Create dependencies cache
+        uses: actions/cache@v3
+        if: ${{ false }}
+        with:
+          path: |
+            ${{ env.cache }}
+          key: setup-go-deps-${{ hashFiles('go.sum go.mod') }}
+        
+      - name: Create intermediate built files cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ env.modcache }}
+          key: setup-go-build-${{ hashFiles('**/*.go') }}
+            
+      - name: get
+        run: |
+          go get
+            
+      - name: build
+        run: |
+          find . -name '*.go' | while read f;do echo "// $(date)" >> $f;N=$((N + 1));if [[ $N -gt 1 ]];then break;fi done
+          go build
