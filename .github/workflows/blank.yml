@@ -126,6 +126,7 @@ jobs:
           wc -l go.sum
           
   action-cache-use:
+    needs: action-cache-create
     strategy:
       matrix:
         repo: [ulule/loukoum, allegro/marathon-consul, rancher/kontainer-engine, decred/dcrstakepool]
