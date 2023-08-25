@@ -97,14 +97,14 @@ jobs:
         with:
           path: |
             ${{ env.cache }}
-          key: setup-go-deps-${{ hashFiles('go.sum go.mod') }}
+          key: action-cache-deps-${{ hashFiles('go.sum go.mod') }}
         
       - name: Create intermediate built files cache
         uses: actions/cache@v3
         with:
           path: |
             ${{ env.modcache }}
-          key: setup-go-build-${{ hashFiles('**/*.go') }}
+          key: action-cache-build-${{ hashFiles('**/*.go') }}
             
       - name: get
         run: |
@@ -154,14 +154,14 @@ jobs:
         with:
           path: |
             ${{ env.cache }}
-          key: setup-go-deps-${{ hashFiles('go.sum go.mod') }}
+          key: action-cache-deps-${{ hashFiles('go.sum go.mod') }}
         
       - name: Create intermediate built files cache
         uses: actions/cache@v3
         with:
           path: |
             ${{ env.modcache }}
-          key: setup-go-build-${{ hashFiles('**/*.go') }}
+          key: action-cache-build-${{ hashFiles('**/*.go') }}
             
       - name: get
         run: |
