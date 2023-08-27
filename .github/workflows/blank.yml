@@ -10,7 +10,7 @@ jobs:
   builtin-cache-create:
     strategy:
       matrix:
-        repo: [ulule/loukoum, allegro/marathon-consul, rancher/kontainer-engine, decred/dcrstakepool]
+        repo: [ulule/loukoum, allegro/marathon-consul, decred/dcrstakepool, rancher/kontainer-engine]
   
     runs-on: ubuntu-latest
     steps:
