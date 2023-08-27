@@ -94,21 +94,23 @@ jobs:
         run: |
           echo "cache=$(go env GOCACHE)" >> $GITHUB_ENV
           echo "modcache=$(go env GOMODCACHE)" >> $GITHUB_ENV
+          repo=$(echo '${{ matrix.repo }}'|sed 's/\//-/')
+          echo "repo=${repo}" >> $GITHUB_ENV
          
       - name: Create dependencies cache
         uses: actions/cache@v3
         if: ${{ false }}
         with:
           path: |
-            ${{ env.cache }}
-          key: action-cache-deps-${{ hashFiles('go.sum go.mod') }}
+            ${{ env.modcache }}
+          key: action-cache-deps--${{ env.repo }}--${{ hashFiles('go.sum go.mod') }}
         
       - name: Create intermediate built files cache
         uses: actions/cache@v3
         with:
           path: |
-            ${{ env.modcache }}
-          key: action-cache-build-${{ hashFiles('**/*.go') }}
+            ${{ env.cache }}
+          key: action-cache-build--${{ env.repo }}--${{ hashFiles('**/*.go') }}
             
       - name: get
         run: |
@@ -151,21 +153,23 @@ jobs:
         run: |
           echo "cache=$(go env GOCACHE)" >> $GITHUB_ENV
           echo "modcache=$(go env GOMODCACHE)" >> $GITHUB_ENV
+          repo=$(echo '${{ matrix.repo }}'|sed 's/\//-/')
+          echo "repo=${repo}" >> $GITHUB_ENV
          
       - name: Create dependencies cache
         uses: actions/cache@v3
         if: ${{ false }}
         with:
           path: |
-            ${{ env.cache }}
-          key: action-cache-deps-${{ hashFiles('go.sum go.mod') }}
+            ${{ env.modcache }}
+          key: action-cache-deps--${{ env.repo }}--${{ hashFiles('go.sum go.mod') }}
         
       - name: Create intermediate built files cache
         uses: actions/cache@v3
         with:
           path: |
-            ${{ env.modcache }}
-          key: action-cache-build-${{ hashFiles('**/*.go') }}
+            ${{ env.cache }}
+          key: action-cache-build--${{ env.repo }}--${{ hashFiles('**/*.go') }}
             
       - name: get
         run: |
