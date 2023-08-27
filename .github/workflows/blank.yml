@@ -99,7 +99,6 @@ jobs:
          
       - name: Create dependencies cache
         uses: actions/cache@v3
-        if: ${{ false }}
         with:
           path: |
             ${{ env.modcache }}
