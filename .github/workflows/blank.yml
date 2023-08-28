@@ -67,7 +67,7 @@ jobs:
 
       - name: touch
         run: |
-          find . -name '*.go' | while read f;do ls -la $f;echo "// $(date)" >> $f;N=$((N + 1));ls -la $f;if [[ $N -gt 1 ]];then break;fi done
+          find . -name '*.go' | while read f;do ls -la $f;echo "// $(date)" >> $f;N=$((N + 1));touch $f;ls -la "$N $f";if [[ $N -gt 10 ]];then break;fi done
          
       - name: build
         run: |
@@ -175,7 +175,7 @@ jobs:
           
       - name: touch
         run: |
-          find . -name '*.go' | while read f;do ls -la $f;echo "// $(date)" >> $f;N=$((N + 1));ls -la $f;if [[ $N -gt 1 ]];then break;fi done
+          find . -name '*.go' | while read f;do ls -la $f;echo "// $(date)" >> $f;N=$((N + 1));touch $f;ls -la "$N $f";if [[ $N -gt 10 ]];then break;fi done
          
       - name: build
         run: |
