@@ -163,14 +163,14 @@ jobs:
           repo=$(echo '${{ matrix.repo }}'|sed 's/\//-/')
           echo "repo=${repo}" >> $GITHUB_ENV
          
-      - name: Create dependencies cache
+      - name: Use dependencies cache
         uses: actions/cache@v3
         with:
           path: |
             ${{ env.modcache }}
           key: action-cache-deps--${{ env.repo }}--${{ hashFiles('go.sum go.mod') }}
         
-      - name: Create intermediate built files cache
+      - name: Use intermediate built files cache
         uses: actions/cache@v3
         with:
           path: |
