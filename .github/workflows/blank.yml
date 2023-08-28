@@ -53,6 +53,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: ${{ matrix.repo }}
+          
+      - name: touch
+        run: |
+          find . -name '*.go' | while read f;do ls -la $f;echo "// $(date)" >> $f;N=$((N + 1));touch $f;echo $N;ls -la $f;if [[ $N -gt 10 ]];then break;fi done
 
       - name: Install Go
         uses: actions/setup-go@v4
@@ -141,6 +145,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: ${{ matrix.repo }}
+          
+      - name: touch
+        run: |
+          find . -name '*.go' | while read f;do ls -la $f;echo "// $(date)" >> $f;N=$((N + 1));touch $f;echo $N;ls -la $f;if [[ $N -gt 10 ]];then break;fi done
 
       - name: Install Go
         uses: actions/setup-go@v4
@@ -168,14 +176,11 @@ jobs:
           path: |
             ${{ env.cache }}
           key: action-cache-build--${{ env.repo }}--${{ hashFiles('**/*.go') }}
+          restore-keys: action-cache-build--${{ env.repo }}--
             
       - name: get
         run: |
           go get
-          
-      - name: touch
-        run: |
-          find . -name '*.go' | while read f;do ls -la $f;echo "// $(date)" >> $f;N=$((N + 1));touch $f;echo $N;ls -la $f;if [[ $N -gt 10 ]];then break;fi done
          
       - name: build
         run: |
