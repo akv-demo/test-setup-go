@@ -17,6 +17,8 @@ jobs:
         with:
           go-version: '1.20'
           cache-dependency-path: go.sum /tmp/env
+
+      - run: go build
       
       - run: echo "bbbb"> /tmp/env
     
@@ -24,6 +26,8 @@ jobs:
         with:
           go-version: '1.20'
           cache-dependency-path: go.sum /tmp/env  
+
+      - run: go build
    
   
 
