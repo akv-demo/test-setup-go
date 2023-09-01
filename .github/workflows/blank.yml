@@ -13,13 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install Go
+      - name: Setup default toolchain 1.21.0
         uses: actions/setup-go@v4
         with:
           go-version: "1.21.0"
           cache: false
 
-      - name: Run
+      - name: Use go with 1.20.6 set in go.mod
         run: |
           cd hello
           ls -la
