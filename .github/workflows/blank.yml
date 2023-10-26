@@ -24,10 +24,6 @@ jobs:
           env
           echo 'go env GOPATH'
           go env GOPATH
-          echo 'ls -la /home/runner/go/bin'
-          ls -la /home/runner/go/bin
-          echo 'ls -la /usr/bin/go'
-          ls -la /usr/bin/go
           echo "PATH: $PATH"
           echo "GOROOT: $GOROOT"
           ls -la `which go`
