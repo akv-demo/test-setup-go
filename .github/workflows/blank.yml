@@ -20,6 +20,10 @@ jobs:
         env:
           h: ${{ hashFiles('**/*.txt') }}
         run: echo "Hash $h"
+      - name: h11
+        env:
+          h: ${{ hashFiles('/tmp/f') }}
+        run: echo "Hash $h"
         
       - name: h1
         env:
