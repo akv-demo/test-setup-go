@@ -15,4 +15,11 @@ jobs:
           echo "111" > f1.txt
           echo "222" > f2.txt
           echo "bbb" > /tmp/f
+          echo "Hash 0"
+          echo ${{ hashFiles('**/*.txt /tmp/f')}}
+          echo "111" >> f1.txt
+          echo "Hash 1"
+          echo ${{ hashFiles('**/*.txt /tmp/f')}}
+          echo "bbb" >> /tmp/f
+          echo "Hash 2"
           echo ${{ hashFiles('**/*.txt /tmp/f')}}
