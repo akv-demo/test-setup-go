@@ -16,13 +16,28 @@ jobs:
           echo "111" > f1.txt
           echo "222" > f2.txt
           echo "bbb" > /tmp/f
+          echo "ccc" > f.doc
       - name: h10
         env:
           h: ${{ hashFiles('**/*.txt') }}
         run: echo "Hash $h"
       - name: h11
         env:
-          h: ${{ hashFiles('//tmp/f') }}
+          h: ${{ hashFiles('/tmp/f') }}
+        run: |
+          cat /tmp/f
+          echo "Hash $h"
+      - name: h1doc
+        env:
+          h: ${{ hashFiles('f.doc') }}
+        run: echo "Hash $h"
+      - name: h1doc2
+        env:
+          h: ${{ hashFiles('**/*.txt','f.doc') }}
+        run: echo "Hash $h"
+      - name: h1doc3
+        env:
+          h: ${{ hashFiles('{**/*.txt,f.doc}') }}
         run: echo "Hash $h"
         
       - name: h1
