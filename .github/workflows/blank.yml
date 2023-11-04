@@ -23,7 +23,7 @@ jobs:
         
       - name: h1
         env:
-          h: ${{ hashFiles('**/*.txt /tmp/f') }}
+          h: ${{ hashFiles('{**/*.txt,/tmp/f}') }}
         run: echo "Hash $h"
 
       - name: f2
@@ -31,7 +31,7 @@ jobs:
           echo "111" >> f1.txt
       - name: h2
         env:
-          h: ${{ hashFiles('**/*.txt /tmp/f') }}
+          h: ${{ hashFiles('{**/*.txt,/tmp/f}') }}
         run: echo "Hash $h"
         
       - name: f3
@@ -39,6 +39,6 @@ jobs:
           echo "bbb" >> /tmp/f
       - name: h3
         env:
-          h: ${{ hashFiles('**/*.txt /tmp/f') }}
+          h: ${{ hashFiles('**/*.txt,/tmp/f') }}
         run: echo "Hash $h"
 
