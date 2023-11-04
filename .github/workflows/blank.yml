@@ -16,6 +16,11 @@ jobs:
           echo "111" > f1.txt
           echo "222" > f2.txt
           echo "bbb" > /tmp/f
+      - name: h10
+        env:
+          h: ${{ hashFiles('**/*.txt') }}
+        run: echo "Hash $h"
+        
       - name: h1
         env:
           h: ${{ hashFiles('**/*.txt /tmp/f') }}
