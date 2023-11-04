@@ -11,15 +11,29 @@ jobs:
     name: 'Find default go version'
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - name: f1
+        run: |
           echo "111" > f1.txt
           echo "222" > f2.txt
           echo "bbb" > /tmp/f
-          echo "Hash 0"
-          echo ${{ hashFiles('**/*.txt /tmp/f') }}
+      - name: h1
+        env:
+          h: ${{ hashFiles('**/*.txt /tmp/f') }}
+        run: echo "Hash $h"
+
+      - name: f2
+        run: |
           echo "111" >> f1.txt
-          echo "Hash 1"
-          echo ${{ hashFiles('**/*.txt /tmp/f') }}
+      - name: h2
+        env:
+          h: ${{ hashFiles('**/*.txt /tmp/f') }}
+        run: echo "Hash $h"
+        
+      - name: f3
+        run: |
           echo "bbb" >> /tmp/f
-          echo "Hash 2"
-          echo ${{ hashFiles('**/*.txt /tmp/f') }}
+      - name: h3
+        env:
+          h: ${{ hashFiles('**/*.txt /tmp/f') }}
+        run: echo "Hash $h"
+
