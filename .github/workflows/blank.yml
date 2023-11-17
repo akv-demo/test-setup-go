@@ -25,7 +25,8 @@ jobs:
 
       - name: run go
         run: |
-          env
+          which go
+          ls -la `which go`
           echo 'go env GOPATH'
           go env GOPATH
           
