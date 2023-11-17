@@ -25,8 +25,8 @@ jobs:
 
       - name: run go
         run: |
-          which go
           ls -la `which go`
-          echo 'go env GOPATH'
-          go env GOPATH
+          ls -la /opt/hostedtoolcache/go/1.16.2
+          ls -la /opt/hostedtoolcache/go/1.16.2/x64
+          ls -la /opt/hostedtoolcache/go/1.16.2/x64/bin
           
