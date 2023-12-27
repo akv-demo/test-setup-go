@@ -6,6 +6,51 @@ env:
 jobs:
   view-contexts:
     runs-on: ubuntu-latest
-    steps:  
+    steps:
+      - name: Dump GitHub context
+        run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
+      - name: Dump runner context
+        run: echo '${{ toJSON(runner) }}'
+      - name: Dump strategy context
+        run: echo '${{ toJSON(strategy) }}'
+      - name: Dump matrix context
+        run: echo '${{ toJSON(matrix) }}'
+      - name: default environments in https://docs.github.com/en/actions/learn-github-actions/environment-variables
+        run: echo "CI=${CI};GITHUB_EVENT_NAME=${GITHUB_EVENT_NAME}; ${GITHUB_ACTOR}~=${GITHUB_REPOSITORY_OWNER}; GITHUB_REPOSITORY=${GITHUB_REPOSITORY}"
+      - name: self-defined environments
+        run: echo "GITHUB_REPOSITORY_NAME=${GITHUB_REPOSITORY_NAME}"
+  view-prebuilt-version:
+    strategy:
+      matrix:
+        os: [macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@main
+      - name: docker pre-install
+        run: docker --version
+        if: ${{ matrix.os != 'macos-latest' }}
+      - name: mysql pre-install
+        run: mysql -V
+        if: ${{ matrix.os != 'macos-latest' }}
+      - name: java pre-install
+        run: java -version
+      - name: python pre-install
+        run: python --version
+      - name: node pre-built
+        run: node --version
+      - name: go pre-built
+        run: go version
+      - run: echo $(go env GOOS)
+        shell: bash
+      - uses: actions/setup-go@main
+        with:
+          go-version: 'stable'
+        # When no go versions are set in workflow file, the default version in GitHub hosted runner is used.
+      - name: after setup Golang
+        run: go version        
       - name: after setup Golang
         run: go version
