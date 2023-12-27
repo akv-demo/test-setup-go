@@ -1,23 +1,11 @@
-name: CI
+name: pre-install software in GHA runner
 
-on:
-  push:
-  pull_request:
-
-  workflow_dispatch:
-
+on: [push, workflow_dispatch]
+env:
+  HOME: /home/runner/work/
 jobs:
-  find-default-go:
-    name: 'Find default go version'
-    runs-on: windows-latest
-    outputs:
-      version: ${{ steps.goversion.outputs.version }}
-    steps:
-      - run: |
-          ls -la 'C:\hostedtoolcache\windows\go\'
-          ls -la "C:\hostedtoolcache\windows\go\*"
-          version=`go env GOVERSION|sed s/^go//`
-          echo "default go version: $version"
-          echo "version=$version" >> "$GITHUB_OUTPUT"
-        id: goversion
-        shell: bash
+  view-contexts:
+    runs-on: ubuntu-latest
+    steps:  
+      - name: after setup Golang
+        run: go version
