@@ -5,6 +5,7 @@ env:
   HOME: /home/runner/work/
 jobs:
   view-contexts:
+    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
