@@ -45,8 +45,10 @@ jobs:
         if: ${{ false }}
         run: python --version
       - name: node pre-built
+        if: ${{ false }}
         run: node --version
       - name: go pre-built
+        if: ${{ false }}
         run: go version
       - run: echo $(go env GOOS)
         shell: bash
