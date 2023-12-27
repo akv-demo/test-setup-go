@@ -51,6 +51,7 @@ jobs:
         if: ${{ false }}
         run: go version
       - run: echo $(go env GOOS)
+        if: ${{ false }}
         shell: bash
       - uses: actions/setup-go@main
         with:
