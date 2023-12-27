@@ -1,20 +1,27 @@
 name: pre-install software in GHA runner
 
 on: [push, workflow_dispatch]
-env:
-  HOME: /home/runner/work/
+
 jobs:
-  view-prebuilt-version:
+  set-env:
     strategy:
       matrix:
         os: [macos-latest]
+    env:
+      HOME: /home/runner/work/
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/setup-go@main
         with:
           go-version: 'stable'
-        # When no go versions are set in workflow file, the default version in GitHub hosted runner is used.
-      - name: after setup Golang
-        run: go version        
-      - name: after setup Golang
-        run: go version
+
+  no-env:
+    strategy:
+      matrix:
+        os: [macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - run: echo $HOME
+      - uses: actions/setup-go@main
+        with:
+          go-version: 'stable'
