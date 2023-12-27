@@ -10,29 +10,6 @@ jobs:
         os: [macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@main
-        if: ${{ false }}
-      - name: docker pre-install
-        run: docker --version
-        if: ${{ matrix.os != 'macos-latest' }}
-      - name: mysql pre-install
-        run: mysql -V
-        if: ${{ matrix.os != 'macos-latest' }}
-      - name: java pre-install
-        if: ${{ false }}
-        run: java -version
-      - name: python pre-install
-        if: ${{ false }}
-        run: python --version
-      - name: node pre-built
-        if: ${{ false }}
-        run: node --version
-      - name: go pre-built
-        if: ${{ false }}
-        run: go version
-      - run: echo $(go env GOOS)
-        if: ${{ false }}
-        shell: bash
       - uses: actions/setup-go@main
         with:
           go-version: 'stable'
