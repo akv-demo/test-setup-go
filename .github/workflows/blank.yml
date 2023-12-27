@@ -4,26 +4,6 @@ on: [push, workflow_dispatch]
 env:
   HOME: /home/runner/work/
 jobs:
-  view-contexts:
-    if: ${{ false }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dump GitHub context
-        run: echo '${{ toJSON(github) }}'
-      - name: Dump job context
-        run: echo '${{ toJSON(job) }}'
-      - name: Dump steps context
-        run: echo '${{ toJSON(steps) }}'
-      - name: Dump runner context
-        run: echo '${{ toJSON(runner) }}'
-      - name: Dump strategy context
-        run: echo '${{ toJSON(strategy) }}'
-      - name: Dump matrix context
-        run: echo '${{ toJSON(matrix) }}'
-      - name: default environments in https://docs.github.com/en/actions/learn-github-actions/environment-variables
-        run: echo "CI=${CI};GITHUB_EVENT_NAME=${GITHUB_EVENT_NAME}; ${GITHUB_ACTOR}~=${GITHUB_REPOSITORY_OWNER}; GITHUB_REPOSITORY=${GITHUB_REPOSITORY}"
-      - name: self-defined environments
-        run: echo "GITHUB_REPOSITORY_NAME=${GITHUB_REPOSITORY_NAME}"
   view-prebuilt-version:
     strategy:
       matrix:
